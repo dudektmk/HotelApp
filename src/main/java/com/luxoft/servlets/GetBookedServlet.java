@@ -18,7 +18,7 @@ import java.util.HashSet;
  */
 public class GetBookedServlet extends HttpServlet {
 
-
+//dfdfsdf
     //@Autowired
     private HotelService hotelService=new HotelServiceImpl();
 
