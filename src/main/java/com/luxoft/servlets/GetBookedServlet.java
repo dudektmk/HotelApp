@@ -3,6 +3,11 @@ package com.luxoft.servlets;
 import com.luxoft.model.Hotel;
 import com.luxoft.service.HotelService;
 import com.luxoft.service.HotelServiceImpl;
+import com.luxoft.validator.Validator;
+import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
+import org.thymeleaf.util.Validate;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -22,11 +27,17 @@ public class GetBookedServlet extends HttpServlet {
     private HotelService hotelService=new HotelServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        hotelService.addReservation(HotelServiceImpl.hotel,(String)req.getParameter("roomId"));
+        if (Validator.validateRoomId(req.getParameter("roomId"))) {
+            hotelService.addReservation(HotelServiceImpl.hotel,(String)req.getParameter("roomId"));
+            req.setAttribute("bookedRooms", hotelService.getReservations(HotelServiceImpl.hotel));
+            req.getRequestDispatcher("/").forward(req, resp);
+    } else {
+        req.setAttribute("roomError", "true");
         req.setAttribute("bookedRooms", hotelService.getReservations(HotelServiceImpl.hotel));
         req.getRequestDispatcher("/").forward(req, resp);
+    }
     }
 
 //    public void setHotelService(HotelService hotelService) {

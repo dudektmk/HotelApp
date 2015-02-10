@@ -21,7 +21,7 @@ public class CancelBookedServlet extends HttpServlet {
     private HotelService hotelService = new HotelServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet (HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         hotelService.cancelReservation(HotelServiceImpl.hotel, (String) req.getParameter("roomId"));
         req.setAttribute("bookedRooms", hotelService.getReservations(HotelServiceImpl.hotel));

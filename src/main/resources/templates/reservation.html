@@ -3,24 +3,37 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Reservation</title>
-    <script th:src="@{/scripts/validate.js}"></script>
+    
 </head>
 
 <body>
 <h3>Reservation:</h3>
 
-<form th:action="@{/getBooked}" method="Get">
-            Please enter room id:
-            <input type="text" name="roomId" id="roomId"/>
-            <div id="roomError" class="error"></div>
-            <input type="submit" value="Book"/>
+<form th:action="@{/getBooked}" method="post">
+
+    Please enter room id:
+    <input type="text" name="roomId" id="roomId"/>
+    <input type="submit" value="Book"/>
+
+    <div th:if="${roomError!=null}" style="color:#ff0020">You can't add room without ID</div>
 </form>
-    <br/>
-    <h3 >Booked rooms:</h3>
-        <li th:each="bookedRoom : ${bookedRooms}">
-          <a  th:text="${bookedRoom}" th:href="|/cancel?roomId=${bookedRoom}|"></a>
-        </li>
+<br/>
+
+<div th:if="${#lists.isEmpty(bookedRooms)}">
+    <h3>There are no reservations</h3>
+</div>
+<div th:if="${#lists.isEmpty(bookedRooms)!=true}">
+    <h3>Boocked rooms</h3>
+</div>
+<li th:each="bookedRoom : ${bookedRooms}">
+    <a th:text="${bookedRoom}" th:href="|/cancel?roomId=${bookedRoom}|"></a>
+</li>
+
+<div th:if="${#lists.isEmpty(bookedRooms)!=true}">
     <h4>To cancel booking click on chosen room</h4>
+</div>
+
+
 </body>
 </html>
 
