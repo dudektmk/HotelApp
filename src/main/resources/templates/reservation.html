@@ -3,20 +3,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Reservation</title>
-    <script th:src="@{/webapp/jquery-1.11.0.min.js}"></script>
-    <script th:src="@{/webapp/validate.js}"></script>
+    <script th:src="@{/scripts/validate.js}"></script>
 </head>
 
 <body>
 <h3>Reservation:</h3>
 
 <form th:action="@{/getBooked}" method="Get">
-
             Please enter room id:
             <input type="text" name="roomId" id="roomId"/>
             <div id="roomError" class="error"></div>
-            <input type="submit" th:onclick="'javascript:validate();'" value="Book"/>
-
+            <input type="submit" value="Book"/>
 </form>
     <br/>
     <h3 >Booked rooms:</h3>

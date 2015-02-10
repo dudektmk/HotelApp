@@ -17,7 +17,6 @@ import java.util.HashSet;
  */
 public class CancelBookedServlet extends HttpServlet {
 
-
     //@Autowired
     private HotelService hotelService = new HotelServiceImpl();
 
