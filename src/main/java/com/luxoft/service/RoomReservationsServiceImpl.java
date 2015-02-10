@@ -39,6 +39,11 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
         roomReservations.cancelReservation(roomId);
     }
 
+    @Override
+    public void cancelAll() {
+        roomReservations.cancelAll();
+    }
+
     public static RoomReservationsServiceImpl getInstance(){
         return singletonInstance;
     }

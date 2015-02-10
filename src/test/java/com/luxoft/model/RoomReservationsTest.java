@@ -33,7 +33,7 @@ public class RoomReservationsTest {
     }
 
     @Test
-    public void shouldReturnEmptySetWhenAllReservationsWasCanceled() throws Exception {
+    public void shouldReturnEmptySetWhenThereIsNoReservations() throws Exception {
         roomReservations.addReservation("room 1");
 
         roomReservations.cancelReservation("room 1");
@@ -51,6 +51,17 @@ public class RoomReservationsTest {
         Set<String> result= roomReservations.getReservations();
 
         Assert.assertEquals(1,result.size());
+    }
+
+    @Test
+    public void shouldReturnEmptySetWhenAllReservationsWasCanceled() throws Exception {
+        roomReservations.addReservation("room 1");
+        roomReservations.addReservation("room 2");
+
+        roomReservations.cancelAll();
+        Set<String> result= roomReservations.getReservations();
+
+        Assert.assertTrue(result.isEmpty());
     }
 }
 

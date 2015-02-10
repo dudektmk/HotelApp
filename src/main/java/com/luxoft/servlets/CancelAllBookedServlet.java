@@ -10,17 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Dudi on 2015-02-09.
+ * Created by Dudi on 2015-02-10.
  */
-public class CancelBookedServlet extends HttpServlet {
-
-    //@Autowired
-    private RoomReservationsService roomReservationsService = RoomReservationsServiceImpl.getInstance();
+public class CancelAllBookedServlet extends HttpServlet {
+    private RoomReservationsService roomReservationsService= RoomReservationsServiceImpl.getInstance();
 
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        roomReservationsService.cancelReservation((String) req.getParameter("roomId"));
+        roomReservationsService.cancelAll();
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
         req.getRequestDispatcher("/").forward(req, resp);
     }

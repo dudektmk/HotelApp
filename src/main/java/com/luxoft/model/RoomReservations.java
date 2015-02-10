@@ -41,4 +41,8 @@ public class RoomReservations {
                 ", reservationID=" + reservationID +
                 '}';
     }
+
+    public void cancelAll() {
+        reservations.clear();
+    }
 }

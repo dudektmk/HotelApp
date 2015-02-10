@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}"
+          href="../../css/style.css"/>
     <title>Reservation</title>
 </head>
 
@@ -27,11 +30,17 @@
     <h3>Boocked rooms</h3>
 </div>
 <li th:each="bookedRoom : ${bookedRooms}">
-    <a th:text="${bookedRoom}" th:href="|/cancel?roomId=${bookedRoom}|"></a>
+    <form th:action="@{/cancelBooked}" method="post">
+        <input type="hidden" name="roomId" th:value="${bookedRoom}"/>
+        <button th:text="${bookedRoom}"></button>
+    </form>
 </li>
 
 <div th:if="${#lists.isEmpty(bookedRooms)!=true}">
     <h4>To cancel booking click on chosen room</h4>
+    <form th:action="@{/cancelAll}" method="post">
+        <input type="submit" value="Cancel all"/>
+    </form>
 </div>
 </body>
 </html>
