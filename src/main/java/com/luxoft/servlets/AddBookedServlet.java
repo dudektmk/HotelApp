@@ -25,18 +25,9 @@ public class AddBookedServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if (Validator.validateRoomId(req.getParameter("roomId"))) {
-            try {
-                roomReservationsService.addReservation((String)req.getParameter("roomId"));
-            } catch (ReservationExistsException e) {
-                req.setAttribute("roomError", "alreadyBooked");
-            }
-            req.setAttribute("bookedRooms", roomReservationsService.getReservations());
-            req.getRequestDispatcher("/").forward(req, resp);
-    } else {
-        req.setAttribute("roomError", "wrongId");
+
+        req.setAttribute("roomError", Validator.validateAndAddIfOk(req.getParameter("roomId"), roomReservationsService));
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
         req.getRequestDispatcher("/").forward(req, resp);
-        }
     }
 }
