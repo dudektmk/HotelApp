@@ -9,16 +9,15 @@
 <body>
 <h3>Reservation:</h3>
 
-<form th:action="@{/getBooked}" method="Get">
+<form th:action="@{/addBooked}" method="Post">
             Please enter room id:
             <input type="text" name="roomId" id="roomId"/>
-            <div id="roomError" class="error"></div>
             <input type="submit" value="Book"/>
 </form>
     <br/>
     <h3 >Booked rooms:</h3>
         <li th:each="bookedRoom : ${bookedRooms}">
-          <a  th:text="${bookedRoom}" th:href="|/cancel?roomId=${bookedRoom}|"></a>
+          <a  th:text="${bookedRoom}" th:href="|/cancel?roomId=${bookedRoom}|" th:method="post"></a>
         </li>
     <h4>To cancel booking click on chosen room</h4>
 </body>

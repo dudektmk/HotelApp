@@ -4,7 +4,7 @@ package com.luxoft;
  * Created by Dudi on 2015-02-09.
  */
 import com.luxoft.servlets.CancelBookedServlet;
-import com.luxoft.servlets.GetBookedServlet;
+import com.luxoft.servlets.AddBookedServlet;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
@@ -21,7 +21,7 @@ public class Application {
 
     @Bean
     public ServletRegistrationBean registerGetBookedServlet(){
-        return new ServletRegistrationBean(new GetBookedServlet(),"/getBooked");
+        return new ServletRegistrationBean(new AddBookedServlet(),"/getBooked");
     }
     @Bean
     public ServletRegistrationBean registerCancelBookedServlet(){
