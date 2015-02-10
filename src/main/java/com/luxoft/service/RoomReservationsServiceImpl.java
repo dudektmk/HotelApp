@@ -26,7 +26,7 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
 
     @Override
     public void printReservations() {
-        System.out.println(roomReservations.getReservations());
+        System.out.println(roomReservations.getReservations().toString());
     }
 
     @Override
