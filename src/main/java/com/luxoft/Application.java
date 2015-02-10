@@ -21,7 +21,7 @@ public class Application {
 
     @Bean
     public ServletRegistrationBean registerGetBookedServlet(){
-        return new ServletRegistrationBean(new AddBookedServlet(),"/getBooked");
+        return new ServletRegistrationBean(new AddBookedServlet(),"/addBooked");
     }
     @Bean
     public ServletRegistrationBean registerCancelBookedServlet(){

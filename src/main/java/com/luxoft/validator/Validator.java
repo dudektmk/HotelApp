@@ -6,9 +6,7 @@ package com.luxoft.validator;
 public  class Validator {
 
     public static boolean validateRoomId(Object obj){
-
-     if( ((String)obj).isEmpty()){
-          return false;} return true;
+        return ((String) obj).matches("^[\\w\\.]+ ?[\\w\\.]*");
 }
 
 

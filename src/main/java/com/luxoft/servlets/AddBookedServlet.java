@@ -34,13 +34,9 @@ public class AddBookedServlet extends HttpServlet {
             req.setAttribute("bookedRooms", roomReservationsService.getReservations());
             req.getRequestDispatcher("/").forward(req, resp);
     } else {
-        req.setAttribute("roomError", "emptyId");
+        req.setAttribute("roomError", "wrongId");
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
         req.getRequestDispatcher("/").forward(req, resp);
+        }
     }
-    }
-
-//    public void setHotelService(HotelService hotelService) {
-//        this.hotelService = hotelService;
-//    }
 }

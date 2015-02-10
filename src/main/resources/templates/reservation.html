@@ -14,7 +14,7 @@
     <input type="text" name="roomId" id="roomId"/>
     <input type="submit" value="Book"/>
 
-    <div th:if="${roomError=='emptyId'}" style="color:#ff0020">You can't add room without id</div>
+    <div th:if="${roomError=='wrongId'}" style="color:#ff0020">Wrong id. Proper id must contain only letters, numbers and dots</div>
     <div th:if="${roomError=='alreadyBooked'}" style="color:#ff0020">Room is already booked</div>
 </form>
 <br/>
