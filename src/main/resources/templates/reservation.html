@@ -8,13 +8,14 @@
 <body>
 <h3>Reservation:</h3>
 
-<form th:action="@{/getBooked}" method="post">
+<form th:action="@{/addBooked}" method="post">
 
     Please enter room id:
     <input type="text" name="roomId" id="roomId"/>
     <input type="submit" value="Book"/>
 
-    <div th:if="${roomError!=null}" style="color:#ff0020">You can't add room without ID</div>
+    <div th:if="${roomError=='emptyId'}" style="color:#ff0020">You can't add room without id</div>
+    <div th:if="${roomError=='alreadyBooked'}" style="color:#ff0020">Room is already booked</div>
 </form>
 <br/>
 
@@ -31,8 +32,6 @@
 <div th:if="${#lists.isEmpty(bookedRooms)!=true}">
     <h4>To cancel booking click on chosen room</h4>
 </div>
-
-
 </body>
 </html>
 

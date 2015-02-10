@@ -1,5 +1,7 @@
 package com.luxoft.model;
 
+import com.luxoft.exceptions.ReservationExistsException;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +20,12 @@ public class RoomReservations {
         return reservations;
     }
 
-    public void addReservation(String s) {
+    public void addReservation(String s) throws ReservationExistsException{
+        for(String res:reservations){
+            if(res.equals(s)){
+                throw new ReservationExistsException("Room is already reserved");
+            }
+        }
         reservations.add(s);
     }
 
