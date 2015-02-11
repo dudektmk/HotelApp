@@ -10,11 +10,16 @@ import java.util.UUID;
 public class RoomReservations {
 
     private Set<String> reservations;
-    private UUID reservationID;
+
+    private String reservationID;
 
     public RoomReservations() {
         this.reservations = new HashSet<String>();
-        reservationID=UUID.randomUUID();
+        reservationID=generateId();
+    }
+
+    public void setReservationID(String reservationID) {
+        this.reservationID = reservationID;
     }
 
     public Set<String> getReservations() {
@@ -44,5 +49,31 @@ public class RoomReservations {
 
     public void cancelAll() {
         reservations.clear();
+    }
+
+    private String generateId(){
+        String reservationID= UUID.randomUUID().toString();
+        return reservationID.substring(reservationID.length()-8);
+    }
+
+    public String getReservationID() {
+        return reservationID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RoomReservations that = (RoomReservations) o;
+
+        if (!reservationID.equals(that.reservationID)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return reservationID.hashCode();
     }
 }

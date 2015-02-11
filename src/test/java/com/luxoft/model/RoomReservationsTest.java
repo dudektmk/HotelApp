@@ -4,6 +4,7 @@ package com.luxoft.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,6 +63,20 @@ public class RoomReservationsTest {
         Set<String> result= roomReservations.getReservations();
 
         Assert.assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldReturn8digitId() throws Exception {
+        Assert.assertEquals(8, roomReservations.getReservationID().length());
+    }
+
+    @Test
+    public void shouldReturnsUniqueIds() throws Exception {
+        Set<RoomReservations> uniqueReservations = new HashSet<RoomReservations>();
+        for(int i=0; i<10000;i++){
+            uniqueReservations.add(new RoomReservations());
+        }
+        Assert.assertEquals(10000, uniqueReservations.size());
     }
 }
 
