@@ -5,13 +5,14 @@ import com.luxoft.exceptions.ReservationExistsException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class RoomReservations {
 
     private Set<Reservation> reservations;
 
     public RoomReservations() {
-        this.reservations = new HashSet<Reservation>();
+        this.reservations = new TreeSet<Reservation>();
     }
 
     public Set<Reservation> getReservations() {

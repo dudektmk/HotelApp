@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by tdudek on 2015-02-11.
  */
-public class Reservation {
+public class Reservation implements Comparable{
     private String clientName;
     private String roomId;
 
@@ -44,5 +44,10 @@ public class Reservation {
 
     public void setReservationId(String reservationId) {
         this.reservationId = reservationId;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.roomId.compareTo(((Reservation)o).getRoomId());
     }
 }
