@@ -1,13 +1,22 @@
 package com.luxoft.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
 /**
  * Created by tdudek on 2015-02-11.
  */
+@Entity
 public class Reservation implements Comparable{
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
     private String clientName;
     private String roomId;
+    private String reservationId;
 
     public String getClientName() {
         return clientName;
@@ -17,12 +26,13 @@ public class Reservation implements Comparable{
         this.clientName = clientName;
     }
 
-    private String reservationId;
+    public Reservation() {
+    }
 
     public Reservation(String roomId, String clientName) {
         this.roomId=roomId;
-        this.reservationId=generateId();
         this.clientName=clientName;
+        this.reservationId=generateId();
     }
 
     private String generateId() {
@@ -49,5 +59,15 @@ public class Reservation implements Comparable{
     @Override
     public int compareTo(Object o) {
         return this.roomId.compareTo(((Reservation)o).getRoomId());
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", clientName='" + clientName + '\'' +
+                ", roomId='" + roomId + '\'' +
+                ", reservationId='" + reservationId + '\'' +
+                '}';
     }
 }
