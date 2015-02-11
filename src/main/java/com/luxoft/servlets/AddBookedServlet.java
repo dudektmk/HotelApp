@@ -26,7 +26,7 @@ public class AddBookedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        req.setAttribute("roomError", Validator.validateAndAddIfOk(req.getParameter("roomId"), roomReservationsService));
+        req.setAttribute("roomError", Validator.validateAndAddIfOk(req.getParameter("roomId"),req.getParameter("clientName"), roomReservationsService));
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
         req.getRequestDispatcher("/").forward(req, resp);
     }

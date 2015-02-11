@@ -21,8 +21,8 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
     }
 
     @Override
-    public void addReservation(String reservation) throws ReservationExistsException{
-        roomReservations.addReservation(reservation);
+    public void addReservation(String reservation, String clientName) throws ReservationExistsException{
+        roomReservations.addReservation(reservation,clientName);
     }
 
     @Override

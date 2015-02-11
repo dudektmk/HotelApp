@@ -18,13 +18,13 @@ public class RoomReservations {
         return reservations;
     }
 
-    public void addReservation(String s) throws ReservationExistsException {
+    public void addReservation(String s, String clientName) throws ReservationExistsException {
         for (Reservation res : reservations) {
             if (res.getRoomId().equals(s)) {
                 throw new ReservationExistsException("Room is already reserved");
             }
         }
-        reservations.add(new Reservation(s));
+        reservations.add(new Reservation(s,clientName));
     }
 
     public  void cancelReservation(String s) {

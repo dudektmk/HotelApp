@@ -8,16 +8,21 @@ import com.luxoft.service.RoomReservationsService;
  */
 public  class Validator {
 
-    public static String validateAndAddIfOk(Object obj, RoomReservationsService roomReservationsService){
+    public static String validateAndAddIfOk(Object obj, Object obj2, RoomReservationsService roomReservationsService){
         String roomId=(String) obj;
+        String clientName = (String) obj2;
+
         if(roomId.isEmpty()){
             return "emptyId";
         }
         if (!roomId.matches("[\\w .]+") && roomId.trim().equals(roomId)){
             return "wrongId";
         }
+        if(clientName.isEmpty()){
+            return "emptyName";
+        }
         try {
-                roomReservationsService.addReservation(roomId);
+                roomReservationsService.addReservation(roomId,clientName);
             } catch (ReservationExistsException e) {
                 return "alreadyBooked";
             }
