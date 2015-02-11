@@ -1,6 +1,7 @@
 package com.luxoft.service;
 
 import com.luxoft.exceptions.ReservationExistsException;
+import com.luxoft.model.Reservation;
 
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 public interface RoomReservationsService {
     void addReservation(String reservation) throws ReservationExistsException;
     void printReservations();
-    Set<String> getReservations();
+    Set<Reservation> getReservations();
     void cancelReservation(String roomId);
     void cancelAll();
 }

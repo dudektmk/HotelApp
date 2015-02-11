@@ -13,7 +13,7 @@ public  class Validator {
         if(roomId.isEmpty()){
             return "emptyId";
         }
-        if (!roomId.matches("^[\\w\\.]+ ?[\\w\\.]*")){
+        if (!roomId.matches("[\\w .]+") && roomId.trim().equals(roomId)){
             return "wrongId";
         }
         try {

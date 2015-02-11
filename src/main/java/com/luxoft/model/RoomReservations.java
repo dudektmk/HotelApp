@@ -3,77 +3,42 @@ package com.luxoft.model;
 import com.luxoft.exceptions.ReservationExistsException;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
-
 
 public class RoomReservations {
 
-    private Set<String> reservations;
-
-    private String reservationID;
+    private Set<Reservation> reservations;
 
     public RoomReservations() {
-        this.reservations = new HashSet<String>();
-        reservationID=generateId();
+        this.reservations = new HashSet<Reservation>();
     }
 
-    public void setReservationID(String reservationID) {
-        this.reservationID = reservationID;
-    }
-
-    public Set<String> getReservations() {
+    public Set<Reservation> getReservations() {
         return reservations;
     }
 
-    public void addReservation(String s) throws ReservationExistsException{
-        for(String res:reservations){
-            if(res.equals(s)){
+    public void addReservation(String s) throws ReservationExistsException {
+        for (Reservation res : reservations) {
+            if (res.getRoomId().equals(s)) {
                 throw new ReservationExistsException("Room is already reserved");
             }
         }
-        reservations.add(s);
+        reservations.add(new Reservation(s));
     }
 
-    public void cancelReservation(String s) {
-        reservations.remove(s);
-    }
-
-    @Override
-    public String toString() {
-        return "RoomReservations{" +
-                "reservations=" + reservations +
-                ", reservationID=" + reservationID +
-                '}';
+    public  void cancelReservation(String s) {
+        Iterator<Reservation> iter = reservations.iterator();
+        while(iter.hasNext()){
+            Reservation r = iter.next();
+            if( r.getRoomId().equals(s) )
+            {
+                iter.remove();
+            }
+        }
     }
 
     public void cancelAll() {
         reservations.clear();
-    }
-
-    private String generateId(){
-        String reservationID= UUID.randomUUID().toString();
-        return reservationID.substring(reservationID.length()-8);
-    }
-
-    public String getReservationID() {
-        return reservationID;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        RoomReservations that = (RoomReservations) o;
-
-        if (!reservationID.equals(that.reservationID)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return reservationID.hashCode();
     }
 }

@@ -1,6 +1,7 @@
 package com.luxoft.service;
 
 import com.luxoft.exceptions.ReservationExistsException;
+import com.luxoft.model.Reservation;
 import com.luxoft.model.RoomReservations;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
     }
 
     @Override
-    public Set<String> getReservations() {
+    public Set<Reservation> getReservations() {
         return roomReservations.getReservations();
     }
 

@@ -28,13 +28,27 @@
 </div>
 <div th:if="${#lists.isEmpty(bookedRooms)!=true}">
     <h3>Boocked rooms</h3>
+
+    <table>
+        <th>Room Id:</th><th>Reservation id:</th>
+        <div th:each="bookedRoom : ${bookedRooms}">
+
+            <tr>
+
+                <td>
+                    <form th:action="@{/cancelBooked}" method="post">
+                        <input type="hidden" name="roomId" th:value="${bookedRoom.roomId}"/>
+                        <button th:text="${bookedRoom.roomId}"></button>
+                    </form>
+                </td>
+                <td>
+                    <div th:text="${bookedRoom.reservationId}"> </div>
+
+                </td>
+            </tr>
+        </div>
+    </table>
 </div>
-<li th:each="bookedRoom : ${bookedRooms}">
-    <form th:action="@{/cancelBooked}" method="post">
-        <input type="hidden" name="roomId" th:value="${bookedRoom}"/>
-        <button th:text="${bookedRoom}"></button>
-    </form>
-</li>
 
 <div th:if="${#lists.isEmpty(bookedRooms)!=true}">
     <h4>To cancel booking click on chosen room</h4>
