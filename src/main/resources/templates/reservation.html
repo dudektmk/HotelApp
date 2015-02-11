@@ -59,7 +59,7 @@
                 <td>
                     <form th:action="@{/cancelBooked}" method="post">
                         <input type="hidden" name="roomId" th:value="${bookedRoom.roomId}"/>
-                        <button th:text="${bookedRoom.roomId}"></button>
+                        <button type="button" th:text="${bookedRoom.roomId}"></button>
                     </form>
                 </td>
                 <td>

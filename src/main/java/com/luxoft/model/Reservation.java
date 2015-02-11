@@ -45,6 +45,4 @@ public class Reservation {
     public void setReservationId(String reservationId) {
         this.reservationId = reservationId;
     }
-
-
 }

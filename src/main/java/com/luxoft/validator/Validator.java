@@ -15,7 +15,7 @@ public  class Validator {
         if(roomId.isEmpty()){
             return "emptyId";
         }
-        if (!roomId.matches("[\\w .]+") && roomId.trim().equals(roomId)){
+        if (!roomId.matches("[\\w.]+")){
             return "wrongId";
         }
         if(clientName.isEmpty()){
