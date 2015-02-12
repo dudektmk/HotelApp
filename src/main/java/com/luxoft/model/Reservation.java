@@ -29,10 +29,14 @@ public class Reservation implements Comparable{
     public Reservation() {
     }
 
-    public Reservation(String roomId, String clientName) {
+    public Reservation(String roomId){
         this.roomId=roomId;
-        this.clientName=clientName;
         this.reservationId=generateId();
+    }
+    public Reservation(String roomId, String clientName) {
+        this(roomId);
+        this.clientName=clientName;
+
     }
 
     private String generateId() {

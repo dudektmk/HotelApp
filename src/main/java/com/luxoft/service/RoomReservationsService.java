@@ -14,4 +14,7 @@ public interface RoomReservationsService {
     Set<Reservation> getReservations();
     void cancelReservation(String roomId);
     void cancelAll();
+    void addReservationToDb(Reservation reservation);
+    void cancelReservationFromDb(String roomId);
+    void cancelAllReservationsFromDb();
 }

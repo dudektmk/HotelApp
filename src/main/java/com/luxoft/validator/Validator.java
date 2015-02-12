@@ -23,13 +23,17 @@ public  class Validator {
             return "emptyName";
         }
         try {
-                Reservation reservtion=new Reservation(roomId,clientName);
-                roomReservationsService.addReservation(reservtion);
+            addReservation(roomReservationsService, new Reservation(roomId,clientName));
             } catch (ReservationExistsException e) {
                 return "alreadyBooked";
             }
         return "";
 }
+
+    public static void addReservation(RoomReservationsService roomReservationsService, Reservation reservation) throws ReservationExistsException {
+        roomReservationsService.addReservation(reservation);
+        roomReservationsService.addReservationToDb(reservation);
+    }
 
 
 }

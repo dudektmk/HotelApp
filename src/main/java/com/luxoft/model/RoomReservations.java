@@ -26,7 +26,6 @@ public class RoomReservations {
                 throw new ReservationExistsException("Room is already reserved");
             }
         }
-        Application.repository.save(reservation);
         reservations.add(reservation);
     }
 
@@ -36,16 +35,11 @@ public class RoomReservations {
             Reservation r = iter.next();
             if( r.getRoomId().equals(s) )
             {
-                Application.repository.delete(r);
                 iter.remove();
             }
         }
     }
-
-
-
     public void cancelAll() {
-        Application.repository.deleteAll();
         reservations.clear();
     }
 }

@@ -18,8 +18,13 @@ public class CancelAllBookedServlet extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        roomReservationsService.cancelAll();
+        cancelAll();
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
         req.getRequestDispatcher("/reservation").forward(req, resp);
+    }
+
+    private void cancelAll(){
+        roomReservationsService.cancelAllReservationsFromDb();
+        roomReservationsService.cancelAll();
     }
 }

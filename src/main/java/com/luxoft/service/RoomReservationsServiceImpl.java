@@ -1,5 +1,6 @@
 package com.luxoft.service;
 
+import com.luxoft.Application;
 import com.luxoft.exceptions.ReservationExistsException;
 import com.luxoft.model.Reservation;
 import com.luxoft.model.RoomReservations;
@@ -45,6 +46,23 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
     @Override
     public void cancelAll() {
         roomReservations.cancelAll();
+    }
+
+    @Override
+    public void addReservationToDb(Reservation reservation) {
+        Application.repository.save(reservation);
+    }
+
+    @Override
+    public void cancelReservationFromDb(String roomId) {
+        for (Reservation res : roomReservations.getReservations()) {
+            if(res.getRoomId().equals(roomId))
+            Application.repository.delete(res);
+        }
+    }
+    @Override
+    public void cancelAllReservationsFromDb() {
+        Application.repository.deleteAll();
     }
 
     public static RoomReservationsServiceImpl getInstance(){
