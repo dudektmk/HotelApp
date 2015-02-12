@@ -3,6 +3,8 @@ package com.luxoft.service;
 import com.luxoft.exceptions.ReservationExistsException;
 import com.luxoft.model.Reservation;
 import com.luxoft.model.RoomReservations;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -21,8 +23,8 @@ public class RoomReservationsServiceImpl implements RoomReservationsService {
     }
 
     @Override
-    public void addReservation(String reservation, String clientName) throws ReservationExistsException{
-        roomReservations.addReservation(reservation,clientName);
+    public void addReservation(Reservation reservation) throws ReservationExistsException{
+        roomReservations.addReservation(reservation);
     }
 
     @Override

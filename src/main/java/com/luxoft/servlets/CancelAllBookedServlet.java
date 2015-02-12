@@ -20,6 +20,6 @@ public class CancelAllBookedServlet extends HttpServlet {
             throws ServletException, IOException {
         roomReservationsService.cancelAll();
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
-        req.getRequestDispatcher("/").forward(req, resp);
+        req.getRequestDispatcher("/reservation").forward(req, resp);
     }
 }

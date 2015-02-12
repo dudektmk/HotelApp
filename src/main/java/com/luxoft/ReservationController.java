@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ReservationController {
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/reservation")
     public String reservation() {
         return "reservation";
+    }
+
+    @RequestMapping(value = "/")
+    public String redirectTest() {
+        return "forward:/initServlet";
     }
 }

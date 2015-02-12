@@ -1,8 +1,4 @@
 package com.luxoft.servlets;
-
-
-
-
 import com.luxoft.exceptions.ReservationExistsException;
 import com.luxoft.service.RoomReservationsService;
 import com.luxoft.service.RoomReservationsServiceImpl;
@@ -28,6 +24,6 @@ public class AddBookedServlet extends HttpServlet {
 
         req.setAttribute("roomError", Validator.validateAndAddIfOk(req.getParameter("roomId"),req.getParameter("clientName"), roomReservationsService));
         req.setAttribute("bookedRooms", roomReservationsService.getReservations());
-        req.getRequestDispatcher("/").forward(req, resp);
+        req.getRequestDispatcher("/reservation").forward(req, resp);
     }
 }

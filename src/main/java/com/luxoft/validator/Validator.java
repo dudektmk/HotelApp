@@ -1,6 +1,7 @@
 package com.luxoft.validator;
 
 import com.luxoft.exceptions.ReservationExistsException;
+import com.luxoft.model.Reservation;
 import com.luxoft.service.RoomReservationsService;
 
 /**
@@ -22,7 +23,8 @@ public  class Validator {
             return "emptyName";
         }
         try {
-                roomReservationsService.addReservation(roomId,clientName);
+                Reservation reservtion=new Reservation(roomId,clientName);
+                roomReservationsService.addReservation(reservtion);
             } catch (ReservationExistsException e) {
                 return "alreadyBooked";
             }
