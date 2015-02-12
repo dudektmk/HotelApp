@@ -11,74 +11,85 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"/>
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
     <title>Reservation</title>
 </head>
-
 <body>
-<div class="jumbotron">
-
-    <h4>Reservation:</h4>
-
-    <form th:action="@{/addBooked}" method="post">
-
-        <h4>Please enter room id:
-            <input type="text" name="roomId" id="roomId"/>
-            Please enter clients name:
-            <input type="text" name="clientName" id="clientName"/>
+<div class="container">
+    <div class="jumbutron">
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Reservation:</div>
+        <form class="navbar-form navbar-left" th:action="@{/addBooked}" method="post">
+            <div class="form-group">
+                <div style="color: black">Please enter room id:</div>
+                <input type="text" name="roomId" id="roomId" class="form-control" placeholder="Room Id:"
+                       aria-describedby="basic-addon2"/>
+                <div style="color: black">Please enter client's name:</div>
+                <input type="text" name="clientName" id="clientName" class="form-control" placeholder="Clients name:"
+                      aria-describedby="basic-addon2"/>
+            </div>
             <input type="submit" value="Book"/>
-        </h4>
-
-        <div th:if="${roomError=='emptyId'}" style="color:#ff0020">Room id cannot be empty</div>
-        <div th:if="${roomError=='wrongId'}" style="color:#ff0020">Wrong id. Proper id must contain only letters,
-            numbers and dots
+            <p></p>
+            <div class="warnings">
+                <div th:if="${roomError=='emptyId'}" style="color:#ff0020">Room id cannot be empty</div>
+                <div th:if="${roomError=='wrongId'}" style="color:#ff0020">Wrong id. Proper id must contain only
+                    letters,
+                    numbers and dots
+                </div>
+                <div th:if="${roomError=='alreadyBooked'}" style="color:#ff0020">Room is already booked</div>
+                <div th:if="${roomError=='emptyName'}" style="color:#ff0020">Enter name</div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-3 ">
+            <h1>My Hotel</h1>
         </div>
-        <div th:if="${roomError=='alreadyBooked'}" style="color:#ff0020">Room is already booked</div>
-        <div th:if="${roomError=='emptyName'}" style="color:#ff0020">Enter name</div>
-    </form>
+        <div class="col-xs-4">
+            <img src="http://logotion.com/_logocatalog/logos_40/logo_407b.gif"/>
+        </div>
+    </div>
 </div>
 
-<div th:if="${#lists.isEmpty(bookedRooms)}">
-    <h3>There are no reservations</h3>
-</div>
-<div th:if="${#lists.isEmpty(bookedRooms)!=true}">
-    <h1 style="color: black">Booked rooms</h1>
+<div class="container">
+    <hr/>
+    <div th:if="${#lists.isEmpty(bookedRooms)}">
+        <h3>There are no reservations</h3>
+    </div>
+    <div th:if="${#lists.isEmpty(bookedRooms)!=true}">
+        <h1 style="color: black">Booked rooms</h1>
+        <table class="table table-striped">
+            <th>Room Id:</th>
+            <th>Reservation id:</th>
+            <th>Guest name:</th>
+            <div th:each="bookedRoom : ${bookedRooms}">
+                <tr>
+                    <td>
+                        <form th:action="@{/cancelBooked}" method="post">
+                            <input type="hidden" name="roomId" th:value="${bookedRoom.roomId}"/>
+                            <button type="submit" th:text="${bookedRoom.roomId}"></button>
+                        </form>
+                    </td>
+                    <td>
+                        <div th:text="${bookedRoom.reservationId}"></div>
+                    </td>
+                    <td>
+                        <div th:text="${bookedRoom.clientName}"></div>
 
-    <table class="table table-striped">
-        <th>Room Id:</th>
-        <th>Reservation id:</th>
-        <th>Guest name:</th>
-        <div th:each="bookedRoom : ${bookedRooms}">
-
-            <tr>
-
-                <td>
-                    <form th:action="@{/cancelBooked}" method="post">
-                        <input type="hidden" name="roomId" th:value="${bookedRoom.roomId}"/>
-                        <button type="submit" th:text="${bookedRoom.roomId}"></button>
-                    </form>
-                </td>
-                <td>
-                    <div th:text="${bookedRoom.reservationId}"></div>
-
-                </td>
-                <td>
-                    <div th:text="${bookedRoom.clientName}"></div>
-
-                </td>
-            </tr>
-        </div>
-    </table>
-    <h4>To cancel booking click on chosen room</h4>
-
-    <form th:action="@{/cancelAll}" method="post">
-        <input type="submit" value="Cancel all"/>
-    </form>
+                    </td>
+                </tr>
+            </div>
+        </table>
+        <h4>To cancel booking click on chosen room</h4>
+        <form th:action="@{/cancelAll}" method="post">
+            <input type="submit" value="Cancel all"/>
+        </form>
+    </div>
 </div>
 </body>
 </html>
+
+
 
