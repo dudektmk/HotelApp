@@ -29,6 +29,7 @@ public class Application{
 
         // fetch all customers
         Iterable<Reservation> reservations = repository.findAll();
+
         System.out.println("Reservations found with findAll():");
         System.out.println("-------------------------------");
         for (Reservation res : reservations) {

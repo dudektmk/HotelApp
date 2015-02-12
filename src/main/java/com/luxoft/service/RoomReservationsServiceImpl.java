@@ -14,7 +14,7 @@ import java.util.Set;
 public class RoomReservationsServiceImpl implements RoomReservationsService {
 
     private RoomReservations roomReservations;
-    private static RoomReservationsServiceImpl singletonInstance=new RoomReservationsServiceImpl();
+    private static final RoomReservationsServiceImpl singletonInstance=new RoomReservationsServiceImpl();
 
     private RoomReservationsServiceImpl() {
         this.roomReservations=new RoomReservations();

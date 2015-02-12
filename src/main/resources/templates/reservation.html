@@ -24,13 +24,21 @@
         <form class="navbar-form navbar-left" th:action="@{/addBooked}" method="post">
             <div class="form-group">
                 <div style="color: black">Please enter room id:</div>
+                <div>
                 <input type="text" name="roomId" id="roomId" class="form-control" placeholder="Room Id:"
                        aria-describedby="basic-addon2"/>
+                </div>
                 <div style="color: black">Please enter client's name:</div>
+                <div>
                 <input type="text" name="clientName" id="clientName" class="form-control" placeholder="Clients name:"
                       aria-describedby="basic-addon2"/>
+                </div>
+                 <p></p>
+                <div style="background-position: left;resize: both ">
+                    <button type="submit" class="btn btn-primary">Book</button>
+                </div>
             </div>
-            <input type="submit" value="Book"/>
+
             <p></p>
             <div class="warnings">
                 <div th:if="${roomError=='emptyId'}" style="color:#ff0020">Room id cannot be empty</div>

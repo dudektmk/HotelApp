@@ -39,6 +39,8 @@ public class RoomReservations {
         }
     }
 
+
+
     public void cancelAll() {
         reservations.clear();
     }
